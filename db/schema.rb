@@ -11,10 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705231642) do
+ActiveRecord::Schema.define(:version => 20130707055612) do
 
   create_table "bios", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.string   "length"
+    t.string   "project_type"
+    t.string   "hometown"
+    t.text     "details"
+    t.date     "startdate"
+    t.text     "schedule_info"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
+
+  create_table "reqs", :force => true do |t|
+    t.integer  "project_id"
     t.integer  "skill_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

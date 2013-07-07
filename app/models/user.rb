@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :bios
   has_many :skills, :through => :bios
+  has_many :projects, :dependent => :destroy
 end

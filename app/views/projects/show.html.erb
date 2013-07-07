@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%= @project.length %>
+</p>
+
+<p>
+  <b>Project type:</b>
+  <%= @project.project_type %>
+</p>
+
+<p>
+  <b>Hometown:</b>
+  <%= @project.hometown %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%= @project.details %>
+</p>
+
+<p>
+  <b>Startdate:</b>
+  <%= @project.startdate %>
+</p>
+
+<p>
+  <b>Schedule info:</b>
+  <%= @project.schedule_info %>
+</p>
+
+<b>Needed skills</b>
+<ul>
+  <% @project.skills.each do |skill| %>
+    <li><%= skill.name %></li>
+  <% end %>
+</ul>
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
