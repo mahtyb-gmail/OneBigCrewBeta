@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
+    before_filter :authenticate_user!, except: [:index]
   # GET /projects
-  # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.order("created_at desc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    session[:return_to] = request.referer
     @project = Project.find(params[:id])
 
     respond_to do |format|
@@ -24,7 +25,8 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    @project = Project.new
+    session[:return_to] = request.referer
+    @project = current_user.projects.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,20 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
+    session[:return_to] = request.referer 
+    if current_user.projects.find_by_id(params[:id]) == nil
+      flash[:error] = 'Permission denied!'
+      redirect_to root_path
+    else
+      @project = Project.find(params[:id]) 
+    end       
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(params[:project])
+    session[:return_to] = request.referer
+    @project = current_user.projects.new(params[:project])
 
     respond_to do |format|
       if @project.save
@@ -56,7 +65,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.json
   def update
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -72,7 +81,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     @project.destroy
 
     respond_to do |format|
