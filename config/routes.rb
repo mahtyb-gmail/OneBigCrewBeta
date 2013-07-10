@@ -1,16 +1,20 @@
 OneBigCrewBeta::Application.routes.draw do
-  get "dashboard/home"
 
+ 
+
+  get "dashboard/home"
   get "dashboard/search_projects"
   get "dashboard/search_users"
 
   resources :projects
 
-
   devise_for :users
 
   get 'about' => "pages#about"
   root :to => 'projects#index'
+  resources :users, only: [:show, :edit, :update]
+   get 'users' => 'users#index' 
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

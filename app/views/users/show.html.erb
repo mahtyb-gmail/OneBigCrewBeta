@@ -1,0 +1,29 @@
+<div class="center hero-unit">
+	<h1>User Info </h1>
+	
+	<p>
+	  <b>Name:</b>
+	  <%= @user.name %>
+	</p>
+ 	<p>
+	  <b>email:</b>
+	  <%= @user.email %>
+	</p>
+	  <b>Location:</b>
+	  <%= @user.location %>
+	</p>
+	  <b>Title:</b>
+	  <%= @user.title %>
+	</p>
+	  <b>About:</b>
+	  <%= @user.about_me %>
+	</p>
+
+	<b>Skills</b>
+	<ul>
+	  <% @user.skills.each do |skill| %>
+	    <li><%= skill.name %></li>
+	  <% end %>
+	</ul>
+</div>
+<%= link_to 'Back', session[:return_to] %>
