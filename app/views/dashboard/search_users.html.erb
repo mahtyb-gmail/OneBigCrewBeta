@@ -1,0 +1,26 @@
+<h1>Candidates for my projects</h1>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>email</th>
+			<th>Title</th>
+			<th>Location</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+		  <td><%= user.name %></td>
+		  <td><%= user.email %></td>
+		  <td><%= user.title %></td>
+		  <td><%= user.location %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+	

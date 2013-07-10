@@ -1,7 +1,8 @@
 OneBigCrewBeta::Application.routes.draw do
   get "dashboard/home"
 
-  get "dashboard/search"
+  get "dashboard/search_projects"
+  get "dashboard/search_users"
 
   resources :projects
 
