@@ -13,7 +13,7 @@ OneBigCrewBeta::Application.routes.draw do
   get 'about' => "pages#about"
   root :to => 'projects#index'
   resources :users, only: [:show, :edit, :update]
-   get 'users' => 'users#index' 
+  get 'users' => 'users#index' 
   
 
   # The priority is based upon order of creation:
