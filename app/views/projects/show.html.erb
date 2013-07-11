@@ -44,6 +44,16 @@
 
 <% if current_user == @project.user %>
 	<%= link_to 'Edit', edit_project_path(@project) %> |
+<% else %>
+	<p>
+		<b>Project Owner:</b>
+		<%= link_to @project.user.name , controller: "users", action: "show", id: @project.user.id %></td>
+	</p>
 <% end %>
 
-<%= link_to 'Back', session[:return_to] %>
+<% if session[:return_to].include? "/projects/new"  %>
+	<%= link_to 'Back to Dashboard', dashboard_home_path  %>
+<% else %>
+	<%= link_to 'Back', session[:return_to] %>
+<% end %>
+

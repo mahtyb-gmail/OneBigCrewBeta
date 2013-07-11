@@ -1,5 +1,5 @@
 <div class="center hero-unit">
-	<h1>My Profile </h1>
+	<h3>My Profile </h3>
 	
 	<p>
 	  <b>Name:</b>
@@ -26,9 +26,12 @@
 	  <% end %>
 	</ul>
 	<%= link_to 'Edit Profile', controller: "users", action: "edit", id: current_user.id %>
+	</p>
+	<h3>Projects</h3>
 	<%= link_to 'Search Projects', dashboard_search_projects_path %>
-	
-		<h1>My Projects </h1>
+	</p>
+	<% unless @projects.empty? %>
+		<h3>My Projects </h3>
 		
 		<table class="table table-striped">
 			<thead>
@@ -50,7 +53,10 @@
 				<%= render @projects %>
 			</tbody>
 		</table>
-			<%= link_to 'New Project', new_project_path %>
-		</p>
+			
 		<%= link_to 'Show Qualified Candidates', dashboard_search_users_path %>
+	<% end %>
+	<p>
+	<%= link_to 'New Project', new_project_path %>
+	</p>
 	</div>

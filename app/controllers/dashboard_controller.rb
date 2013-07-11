@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  def welcome
+  end
   def home
     @projects = current_user.projects.order("created_at desc")
     @profile = current_user
