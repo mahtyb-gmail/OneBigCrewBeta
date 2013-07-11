@@ -81,11 +81,12 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    session[:return_to] = request.referer
     @project = current_user.projects.find(params[:id])
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.html { redirect_to session[:return_to] }
       format.json { head :no_content }
     end
   end
